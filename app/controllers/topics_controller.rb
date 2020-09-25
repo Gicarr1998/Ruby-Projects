@@ -41,6 +41,20 @@ class TopicsController < ApplicationController
       redirect_to root_url
     end
   end
+
+  def upvote
+    @topic = Topic.find(params[:id])
+    @topic.votes.create
+    redirect_to root_url
+  end
+
+  def downvote
+    @topic = Topic.find(params[:id])
+    if @topic.votes.count > 0
+      @topic.votes.last.destroy
+      redirect_to root_url
+    end
+  end
 end
 private
 def topic_params

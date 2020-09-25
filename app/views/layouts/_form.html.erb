@@ -1,4 +1,7 @@
-<%= form_for @topic do |f| %>
+<div class="row">
+    <div class="col-6 mx-auto">
+    <%= render 'error_messages' %>
+    <%= form_for @topic do |f| %>
             <div class="form-group">
                 <%= f.label :title %>
                 <%= f.text_field :title, class:"form-control" %>
@@ -13,3 +16,4 @@
                 <%= f.submit class: "btn btn-primary w-100" %>
             </div>
 <% end %>
+</div>

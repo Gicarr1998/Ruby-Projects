@@ -56,9 +56,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'mini_racer', platforms: :ruby
+#gem 'mini_racer', platforms: :ruby
 
-gem 'autoprefixer-rails'
+#gem 'autoprefixer-rails'
 
 #Custom Gems
 gem 'bootstrap', '~> 4.4.1'
