@@ -1,4 +1,7 @@
 class TopicsController < ApplicationController
+
+  before_action :set_topic, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+
   def index
     @topics = Topic.all
   end
@@ -17,15 +20,12 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:id])
   end
 
   def edit
-    @topic = Topic.find(params[:id])
   end
 
   def update
-    @topic = Topic.find(params[:id])
       if @topic.update(topic_params)
         redirect_to root_url
       else
@@ -34,7 +34,6 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @topic = Topic.find(params[:id])
     if @topic.destroy
       redirect_to root_url
     else
@@ -43,20 +42,23 @@ class TopicsController < ApplicationController
   end
 
   def upvote
-    @topic = Topic.find(params[:id])
     @topic.votes.create
     redirect_to root_url
   end
 
   def downvote
-    @topic = Topic.find(params[:id])
     if @topic.votes.count > 0
       @topic.votes.last.destroy
       redirect_to root_url
     end
   end
-end
+
 private
-def topic_params
-  params.require(:topic).permit(:title, :description)
+  def topic_params
+    params.require(:topic).permit(:title, :description)
+  end
+
+  def set_topic
+    @topic = Topic.find(params[:id])
+  end
 end
